@@ -1,2 +1,10 @@
 # Project-forge
 The start
+
+## Mission
+
+To become capable of identifying real-world problems, designing practical AI and automation solutions, and turning those solutions into useful products.
+
+Started: July 2026
+
+Founder: Daniel Kranicz
