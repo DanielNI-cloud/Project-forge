@@ -13,13 +13,12 @@ while not idea:
 reason = ""
 while not reason:
     reason = input(f"Why do you want to build {idea}? ").strip()
-    print(f"That's a fantastic, {name}! Let's make it happen.")
-    
+
+print(f"That's a fantastic, {name}! Let's make it happen.")
 print()
 print(f"Great, {name}!")
 print(f"You want to build: {idea}")
 print(f"Your reason is: {reason}")
-print(f"Your first step is: {first_step}")
 print("Let's get started.")
 print("Let's break down the steps needed to bring your idea to life.")
 
