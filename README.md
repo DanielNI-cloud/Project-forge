@@ -8,3 +8,8 @@ To become capable of identifying real-world problems, designing practical AI and
 Started: July 2026
 
 Founder: Daniel Kranicz
+
+## Explore
+
+- Read the [Project Forge core principles](docs/core-principles.md).
+- Explore the [Forge Greeter project](projects/forge-greeter/).
