@@ -1,29 +1,28 @@
 print("Welcome to Project Forge!")
-def ask_validated(question,min_length=2):
-    answer = ""
-
-    while not answer or len(answer) < min_length:
+def ask_validated(
+        question,
+        min_length=2, 
+        numbers_only=False):
+    while True:
         answer = input(question).strip()
 
-    return answer
+        if len(answer) < min_length:
+            print(f"Please enter at least {min_length} character(s).")
+            continue
 
-def ask_validated_num(question,min_length=1,numbers_only=True):
-    reply = ""
+        if numbers_only and not answer.isdigit():
+            print("Please enter a valid number.")
+            continue
 
-    while not reply or len(reply) < min_length:
-        reply = input(question).strip()
-
-    if numbers_only and not reply.isdigit():
-        print("Please enter a valid number.")
-        return ask_validated_num(question, min_length, numbers_only)
-
-    return reply
-
+        return answer
 
 name = ask_validated("What is your name? ")
 print(f"Hello, {name}! Let's build something amazing together.")
 
-age = ask_validated_num("May I ask your age? ")
+age = ask_validated("May I ask your age? ",
+                    min_length=1,
+                    numbers_only=True)
+
 idea = ask_validated("What is your idea? ")
 
 reason = ask_validated(f"Why do you want to build {idea}? ")
@@ -31,7 +30,7 @@ reason = ask_validated(f"Why do you want to build {idea}? ")
 print(f"That's a fantastic, {name}! Let's make it happen.")
 print()
 print(f"Great, {name}!")
-print(f"You want to build: {idea}")
+print(f"You are {age} years old and you want to build: {idea}.")
 print(f"Your reason is: {reason}")
 print("Let's get started.")
 print("Let's break down the steps needed to bring your idea to life.")
