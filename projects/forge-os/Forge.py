@@ -26,6 +26,6 @@ while True:
     elif choice == "5":
         print("Closing Project Forge...")
     # Add exit functionality here
-    break
-else:
-print("That is not a valid option. Please choose (1-5).")
+        break
+    else:
+        print("That is not a valid option. Please choose (1-5).")
