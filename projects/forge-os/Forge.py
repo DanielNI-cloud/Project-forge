@@ -15,23 +15,15 @@ def handle_choice(choice):
     if choice == "1":
         print("Opening Notes...")
          # Add functionality for Notes here
-        time.sleep(2)  # Simulate loading time
-        return True  # Continue the loop
     elif choice == "2":
         print("Opening Projects...")
         # Add functionality for Projects here
-        time.sleep(2)  # Simulate loading time
-        return True  # Continue the loop
     elif choice == "3":
         print("Opening Memory...")
-        # Add functionality for Memory here
-        time.sleep(2)  # Simulate loading time
-        return True  # Continue the loop
+        # Add functionality for Memory here     
     elif choice == "4":
         print("Opening Utilities...")
         # Add functionality for Utilities here
-        time.sleep(2)  # Simulate loading time
-        return True  # Continue the loop
     elif choice == "5":
         print("Closing Project Forge...")
         # Add exit functionality here
@@ -40,13 +32,16 @@ def handle_choice(choice):
         # Exit the loop
     else:
         print("That is not a valid option. \nPlease choose between 1-5.")
-        time.sleep(2)  # Simulate loading time
-        return True  # Continue the loop
+
+    time.sleep(2)  # Simulate loading time
+    return True  # Continue the loop
 
     
                                                                     
 while True:
     show_menu()
     choice = input("\nPlease choose an option (1-5): ").strip()
+    print(f"DEBUG: choice is {choice!r}")
+
     if not handle_choice(choice):
         break
