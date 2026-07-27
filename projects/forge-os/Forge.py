@@ -41,7 +41,5 @@ def handle_choice(choice):
 while True:
     show_menu()
     choice = input("\nPlease choose an option (1-5): ").strip()
-    print(f"DEBUG: choice is {choice!r}")
-
     if not handle_choice(choice):
         break
