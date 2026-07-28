@@ -1,0 +1,58 @@
+main()
+- Displays the main menu
+- Reads the main-menu choice
+- Calls the selected feature
+- Controls when the program exits
+
+notes_menu()
+- Displays the notes menu
+- Reads the notes-menu choice
+- Calls add_note(), view_notes(), or delete_note()
+- Returns to the main menu when requested
+
+add_note()
+- Asks the user to enter a note
+- Validates the note
+- Adds the note to the notes file
+- Confirms that the note was saved
+
+view_notes()
+- Reads notes from the file
+- Displays the saved notes
+- Handles an empty or missing notes file
+- Waits for Enter before returning to the menu
+
+delete_note()
+- Reads notes from the file
+- Displays numbered notes
+- Asks the user which note to delete
+- Validates the selection
+- Removes the selected note
+- Rewrites the notes file
+- Confirms that the note was deleted
+
+ask_validated()
+- Removes unnecessary spaces from the input
+- Checks whether the input is empty
+- Checks the minimum input length
+- Checks whether numbers-only input is required
+- Repeats the question until valid input is entered
+- Returns the validated answer
+
+view_selected_notes()  /"possilbe function in the future"/
+- Displays a chosen note
+- Displays a chosen number or range of notes
+
+search_notes()
+- Asks for a keyword   /"possible function in the future"/
+- Searches through the saved notes
+- Displays matching notes
+
+
+
+
+
+
+
+
+
