@@ -1,5 +1,8 @@
 import time
-NOTES_FILE = "notes.txt"
+
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent
+NOTES_FILE = BASE_DIR / "notes.txt"
 
 def notes_menu():
     while True:
