@@ -1,8 +1,5 @@
 import time
-
-from pathlib import Path
-BASE_DIR = Path(__file__).resolve().parent
-NOTES_FILE = BASE_DIR / "notes.txt"
+from storage import load_notes, save_notes
 
 def notes_menu():
     while True:
@@ -41,20 +38,15 @@ def add_note():
         time.sleep(2)  # Simulate loading time
         return
     
-    with open(NOTES_FILE, "a", encoding="utf-8") as file:
-        file.write(note + "\n")
+    notes = load_notes()
+    notes.append(note)
+    save_notes(notes)
+    
     print("Note added successfully!")
     input("\nPress Enter to return to the Notes menu...")
     
 def view_notes():
-    try:
-        with open(NOTES_FILE, "r", encoding="utf-8") as file:
-            notes = file.readlines()
-
-    except FileNotFoundError:
-        print("\nNo notes have been saved yet.")
-        time.sleep(2)
-        return
+    notes = load_notes()
     
     if not notes:
         print("\nNo notes have been saved yet.")
@@ -64,18 +56,11 @@ def view_notes():
         print("\nYour Notes:")
         print("=" * 15)
         for number, note in enumerate(notes, start=1):
-            print(f"{number}. {note.strip()}")
+            print(f"{number}. {note}")
         input("\nPress Enter to return to the Notes menu...")
 
 def delete_note():
-    try:
-        with open(NOTES_FILE, "r", encoding="utf-8") as file:
-            notes = file.readlines()
-
-    except FileNotFoundError:
-        print("\nNo notes have been saved yet.")
-        input("\nPress Enter to return...")
-        return
+    notes = load_notes()
 
     if not notes:
         print("\nNo notes have been saved yet.")
@@ -110,8 +95,7 @@ def delete_note():
 
     deleted_note = notes.pop(note_number - 1)
 
-    with open(NOTES_FILE, "w", encoding="utf-8") as file:
-        file.writelines(notes)
+    save_notes(notes)
 
-    print(f"\nDeleted: {deleted_note.strip()}")
+    print(f"\nDeleted: {deleted_note}")
     input("\nPress Enter to return to the Notes menu...")
