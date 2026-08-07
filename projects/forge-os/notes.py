@@ -55,47 +55,54 @@ def view_notes():
         print("\n" + "=" *15)
         print("\nYour Notes:")
         print("=" * 15)
-        for number, note in enumerate(notes, start=1):
-            print(f"{number}. {note}")
+        display_notes(notes)
         input("\nPress Enter to return to the Notes menu...")
 
 def delete_note():
     notes = load_notes()
-
-    if not notes:
-        print("\nNo notes have been saved yet.")
-        input("\nPress Enter to return...")
-        return
-
+    
     print("\n" + "=" * 15)
     print("Delete Note")
     print("=" * 15)
 
-    for number, note in enumerate(notes, start=1):
-        print(f"{number}. {note.strip()}")
+    display_notes(notes)
 
-    choice = input(
-        "\nEnter the number of the note to delete, or press Enter to cancel: "
-    ).strip()
+    print("=" * 15)
+    print("Delete Note")
+    print("=" * 15)
 
-    if choice == "":
+    note_index = select_note(notes)
+    if note_index is None:
         return
 
-    if not choice.isdigit():
-        print("\nPlease enter a valid number.")
-        time.sleep(2)
-        return
-
-    note_number = int(choice)
-
-    if note_number < 1 or note_number > len(notes):
-        print("\nThat note number does not exist.")
-        time.sleep(2)
-        return
-
-    deleted_note = notes.pop(note_number - 1)
+    deleted_note = notes.pop(note_index)
 
     save_notes(notes)
 
     print(f"\nDeleted: {deleted_note}")
     input("\nPress Enter to return to the Notes menu...")
+
+def display_notes(notes):
+    for number, note in enumerate(notes, start=1):
+        print(f"{number}. {note.strip()}")
+
+def select_note(notes):
+    choice = input(
+        "\nEnter the number of the note, or press Enter to cancel: ").strip()
+
+    if choice == "":    
+        return None 
+
+    if not choice.isdigit():
+        print("\nPlease enter a valid number.")
+        time.sleep(3)
+        return None
+
+    note_number = int(choice)
+
+    if note_number < 1 or note_number > len(notes):
+        print("\nThat note number does not exist.")
+        time.sleep(3)
+        return None
+
+    return note_number-1   
