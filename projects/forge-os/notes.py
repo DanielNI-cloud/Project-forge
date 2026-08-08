@@ -84,12 +84,12 @@ def delete_note():
     if note_index is None:
         return
 
-    deleted_note = notes.pop(note_index)
+    if confirm_delete(notes[note_index]):
+        deleted_note = notes.pop(note_index)
+        save_notes(notes)
 
-    save_notes(notes)
-
-    print(f"\nDeleted: {deleted_note}")
-    input("\nPress Enter to return to the Notes menu...")
+        print(f"\nDeleted: {deleted_note}")
+        input("\nPress Enter to return to the Notes menu...")
 
 def display_notes(notes):
     for number, note in enumerate(notes, start=1):
@@ -149,3 +149,16 @@ def search_notes():
 
         input("\nPress Enter to return to the Notes menu...")
         return
+
+def confirm_delete(note):
+    while True:
+        conf = input(f"\nAre you sure you want to delete the note: '{note}'? \n Press (y/n) or Enter to cancel: ").strip().lower()
+
+        if conf == "y" or conf == "yes":
+            return True
+        elif conf == "n" or conf == "no" or conf == "":
+            return False
+        else:
+            print("\nPlease enter yes/no or equivalents (y/n).")
+            time.sleep(2)
+            continue

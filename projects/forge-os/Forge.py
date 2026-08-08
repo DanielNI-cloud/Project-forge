@@ -40,7 +40,6 @@ def handle_choice(choice):
     else:
         print("That is not a valid option. \nPlease choose between 1-5.")
 
-    time.sleep(2)  # Simulate loading time
     return True  # Continue the loop
 
     
