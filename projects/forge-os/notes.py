@@ -87,22 +87,24 @@ def display_notes(notes):
         print(f"{number}. {note.strip()}")
 
 def select_note(notes):
-    choice = input(
+
+    while True:
+        choice = input(
         "\nEnter the number of the note, or press Enter to cancel: ").strip()
 
-    if choice == "":    
-        return None 
+        if choice == "":    
+            return None 
 
-    if not choice.isdigit():
-        print("\nPlease enter a valid number.")
-        time.sleep(3)
-        return None
+        if not choice.isdigit():
+            print("\nPlease enter a valid number.")
+            time.sleep(3)
+            continue
 
-    note_number = int(choice)
+        note_number = int(choice)
 
-    if note_number < 1 or note_number > len(notes):
-        print("\nThat note number does not exist.")
-        time.sleep(3)
-        return None
+        if note_number < 1 or note_number > len(notes):
+            print("\nThat note number does not exist.")
+            time.sleep(3)
+            continue
 
-    return note_number-1   
+        return note_number-1   
