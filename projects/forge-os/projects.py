@@ -2,6 +2,7 @@ from pathlib import Path
 import time
 import subprocess
 import sys
+from unittest import result
 
 BASE_DIR = Path(__file__).resolve().parent
 FORGE_GREETER = BASE_DIR.parent/"forge-greeter/forge-greeter.py"
@@ -35,4 +36,22 @@ def run_forge_greeter():
         print("Forge Greeter script not found.")
         input("\nPress Enter to return to the Projects menu...")
         return
-    subprocess.run([sys.executable, str(FORGE_GREETER)])
+    
+     #Subprocess call to run the forge-greeter.py script (optional, basic solution, uncomment if needed)
+    #subprocess.run([sys.executable, str(FORGE_GREETER)])
+    
+    try:
+        result = subprocess.run(
+            [sys.executable, str(FORGE_GREETER)],
+            check=True
+        )
+    except OSError as error:
+        print("\nForge Greeter could not be started.")
+        print(f"Error: {error}")
+        input("\nPress Enter to return...")
+        return
+
+    if result.returncode == 0:
+        print("Forge Greeter executed successfully.")
+    else:
+        print(f"Forge Greeter exited with return code {result.returncode}.")    
