@@ -9,10 +9,11 @@ def notes_menu():
 
         print("\n1. Add Note")
         print("2. View Notes")
-        print("3. Delete Note")
-        print("4. Back")
+        print("3. Search Notes")
+        print("4. Delete Note")
+        print("5. Back")
 
-        choice = input("\nPlease choose an option (1-4): ").strip()
+        choice = input("\nPlease choose an option (1-5): ").strip()
 
         if choice == "1":
             add_note()
@@ -21,13 +22,16 @@ def notes_menu():
             view_notes()
 
         elif choice == "3":
-            delete_note()
+            search_notes()
 
         elif choice == "4":
-            return
+            delete_note()
+            
+        elif choice == "5":
+            break
         else:
             print("That is not a valid option.")
-            print("Please choose between 1 and 4.")
+            print("Please choose between 1 and 5.")
             
 
 def add_note():
@@ -60,7 +64,12 @@ def view_notes():
 
 def delete_note():
     notes = load_notes()
-    
+
+    if not notes:
+        print("\nNo notes have been saved yet.")
+        time.sleep(2)
+        return
+
     print("\n" + "=" * 15)
     print("Delete Note")
     print("=" * 15)
@@ -84,10 +93,10 @@ def delete_note():
 
 def display_notes(notes):
     for number, note in enumerate(notes, start=1):
-        print(f"{number}. {note.strip()}")
+        print(f"{number}. {note}")
 
 def select_note(notes):
-
+ 
     while True:
         choice = input(
         "\nEnter the number of the note, or press Enter to cancel: ").strip()
@@ -108,3 +117,35 @@ def select_note(notes):
             continue
 
         return note_number-1   
+
+def search_notes():
+    notes = load_notes()
+
+    if not notes:
+        print("\nNo notes have been saved yet.")
+        time.sleep(2)
+        return
+    
+    while True:
+    
+        search_term = input("\nEnter a keyword, or press Enter to cancel: ").strip().lower()
+
+        if search_term == "":
+            return
+
+        matching_notes = []
+
+        for note in notes:
+            if search_term in note.lower():
+                matching_notes.append(note)
+
+        if not matching_notes:
+            print("\nNo matching notes found.")
+        else:
+            print("\n" + "=" * 15)
+            print("Matching Notes:")
+            print("=" * 15)
+            display_notes(matching_notes)
+
+        input("\nPress Enter to return to the Notes menu...")
+        return

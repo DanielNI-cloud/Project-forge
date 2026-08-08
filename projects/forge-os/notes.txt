@@ -1,1 +1,4 @@
 Experimenting
+Buy fishing line
+Practice Python function
+Check fishing license
