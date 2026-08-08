@@ -1,5 +1,6 @@
 import time
 from notes import notes_menu
+from projects import projects_menu
 
 
 
@@ -24,7 +25,7 @@ def handle_choice(choice):
         notes_menu()
     elif choice == "2":
         print("Opening Projects...")
-        # Add functionality for Projects here
+        projects_menu()
     elif choice == "3":
         print("Opening Memory...")
         # Add functionality for Memory here     
